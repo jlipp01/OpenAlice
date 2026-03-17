@@ -105,3 +105,11 @@ Centralized registry. `tool/` files register tools via `ToolCenter.register()`, 
 - `dev` branch for all development, `master` only via PR
 - **Never** force push master, **never** push `archive/dev` (contains old API keys)
 - CLAUDE.md is **committed to the repo and publicly visible** — never put API keys, personal paths, or sensitive information in it
+
+### Branch Safety Rules
+
+- **NEVER delete `dev` or `master` branches** — both are protected on GitHub (`allow_deletions: false`, `allow_force_pushes: false`)
+- When merging PRs, **NEVER use `--delete-branch`** — it deletes the source branch and destroys commit history
+- When merging PRs, **prefer `--merge` over `--squash`** — squash destroys individual commit history. If the PR has clean, meaningful commits, merge them as-is
+- If squash is needed (messy history), do it — but never combine with `--delete-branch`
+- `archive/dev-pre-beta6` is a historical snapshot — do not modify or delete
